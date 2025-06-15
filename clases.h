@@ -83,7 +83,19 @@ public:
     string GetTitulo() const {
         return titulo;
     }
-
+    /**
+         * Cadena con el id
+    */
+    string GetId() const {
+        return id;
+    }
+    /**
+         * Obtiene la duracion del video
+         * Cadena con la duracion
+         */
+    double GetDuracion() const {
+        return duracion;
+    }
     /**
      * Muestra la información del video (método abstracto)
      */

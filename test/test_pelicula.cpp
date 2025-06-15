@@ -26,7 +26,7 @@ TEST(VideoTest, ConstructorVideo_MultipleInstancias) {
     Video* video1 = new Pelicula(id1, titulo1, duracion1, genero1);
 
     EXPECT_EQ(video1->GetTitulo(), titulo1);
-    EXPECT_DOUBLE_EQ(video1->ObtenerDuracion(), duracion1);
+    EXPECT_DOUBLE_EQ(video1->GetDuracion(), duracion1);
     EXPECT_EQ(video1->GetGenero(), genero1);
 
     string id2 = "P019";
@@ -37,11 +37,9 @@ TEST(VideoTest, ConstructorVideo_MultipleInstancias) {
     Video* video2 = new Pelicula(id2, titulo2, duracion2, genero2);
 
     EXPECT_EQ(video2->GetTitulo(), titulo2);
-    EXPECT_DOUBLE_EQ(video2->ObtenerDuracion(), duracion2);
+    EXPECT_DOUBLE_EQ(video2->GetDuracion(), duracion2);
     EXPECT_EQ(video2->GetGenero(), genero2);
 
-    delete video1;
-    delete video2;
 }
 
 TEST(VideoTest, CalificarValido) {
@@ -53,7 +51,6 @@ TEST(VideoTest, CalificarValido) {
     video->Calificar(5);
     EXPECT_EQ(video->ObtenerCalPromedio(), 4.5);
 
-    delete video;
 }
 
 TEST(VideoTest, CalificarInvalido) {
@@ -65,7 +62,6 @@ TEST(VideoTest, CalificarInvalido) {
     video->Calificar(0);
     EXPECT_EQ(video->ObtenerCalPromedio(), 0.0);
 
-    delete video;
 }
 
 TEST(VideoTest, GetGenero_GetTitulo_MultipleVideos) {
@@ -83,8 +79,32 @@ TEST(VideoTest, GetGenero_GetTitulo_MultipleVideos) {
 TEST(VideoTest, PromedioConListaVacia) {
     Video* video = new Pelicula("P001", "Inception", 148, "accion");
 
-    // No agregamos calificaciones
     EXPECT_DOUBLE_EQ(video->ObtenerCalPromedio(), 0);
 
-    delete video;
+}
+
+TEST(VideoTest, ConstructorInicializaAtributos) {
+    Video* video = new Pelicula("P001", "Inception", 148, "accion");
+
+    EXPECT_EQ(video->GetTitulo(), "Inception");
+    EXPECT_EQ(video->GetGenero(), "accion");
+    EXPECT_DOUBLE_EQ(video->GetDuracion(), 148);
+    EXPECT_EQ(video->GetId(), "P001");
+
+}
+
+TEST(VideoTest, ConstructorConMultiplesInstancias) {
+    Video* video1 = new Pelicula("P002", "El Padrino", 175, "drama");
+    Video* video2 = new Serie("S001", "Stranger Things", 50, "misterio");
+
+    EXPECT_EQ(video1->GetTitulo(), "El Padrino");
+    EXPECT_EQ(video1->GetGenero(), "drama");
+    EXPECT_DOUBLE_EQ(video1->GetDuracion(), 175);
+    EXPECT_EQ(video1->GetId(), "P002");
+
+    EXPECT_EQ(video2->GetTitulo(), "Stranger Things");
+    EXPECT_EQ(video2->GetGenero(), "misterio");
+    EXPECT_DOUBLE_EQ(video2->GetDuracion(), 50);
+    EXPECT_EQ(video2->GetId(), "S001");
+
 }
