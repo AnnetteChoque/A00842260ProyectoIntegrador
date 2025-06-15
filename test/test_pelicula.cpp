@@ -47,3 +47,21 @@ TEST(CoverageTest, ConstructorPeliculaVideoBase) {
     EXPECT_EQ(p.GetGenero(), "Comedy");
     EXPECT_DOUBLE_EQ(p.GetDuracion(), 90.5);
 }
+
+TEST(CoverageTest, ConstructorPelicula_Completo) {
+    Pelicula p("P999", "PeliCover", 120.5, "Terror");
+
+    EXPECT_EQ(p.GetId(), "P999");
+    EXPECT_EQ(p.GetTitulo(), "PeliCover");
+    EXPECT_EQ(p.GetGenero(), "Terror");
+    EXPECT_DOUBLE_EQ(p.GetDuracion(), 120.5);
+
+    p.Calificar(5);
+    testing::internal::CaptureStdout();
+    p.MostrarInfo();
+    string output = testing::internal::GetCapturedStdout();
+    EXPECT_NE(output.find("Pelicula: PeliCover"), string::npos);
+    EXPECT_NE(output.find("Duracion: 120.5"), string::npos);
+    EXPECT_NE(output.find("Genero: Terror"), string::npos);
+    EXPECT_NE(output.find("Calificacion: 5"), string::npos);
+}

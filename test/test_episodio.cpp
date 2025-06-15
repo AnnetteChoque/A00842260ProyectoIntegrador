@@ -41,3 +41,17 @@ TEST(CoverageTest, MostrarEpsCalificados_SinCoincidencias) {
     string output = testing::internal::GetCapturedStdout();
     EXPECT_TRUE(output.empty());
 }
+
+TEST(CoverageTest, MostrarEpsCalificados_EjecutaMostrarInfo) {
+    Serie s("S2025", "SerieEpisodio", 45, "Misterio");
+    Episodio ep1("Episodio Bueno", 1, 5.0); 
+    s.AgregarEpisodio(ep1);
+
+    testing::internal::CaptureStdout();
+    s.MostrarEpsCalificados(4.5);
+    string output = testing::internal::GetCapturedStdout();
+
+    EXPECT_NE(output.find("Episodio: Episodio Bueno"), string::npos);
+    EXPECT_NE(output.find("Temporada: 1"), string::npos);
+    EXPECT_NE(output.find("Calificacion: 5"), string::npos);
+}

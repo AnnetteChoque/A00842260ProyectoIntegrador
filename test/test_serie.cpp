@@ -44,3 +44,20 @@ TEST(CoverageTest, ConstructorSerieVideoBase) {
     EXPECT_EQ(s.GetGenero(), "Thriller");
     EXPECT_DOUBLE_EQ(s.GetDuracion(), 45.0);
 }
+
+TEST(CoverageTest, ConstructorSerie_Completo) {
+    Serie s("S999", "SerieCover", 60.5, "Documental");
+
+    EXPECT_EQ(s.GetId(), "S999");
+    EXPECT_EQ(s.GetTitulo(), "SerieCover");
+    EXPECT_EQ(s.GetGenero(), "Documental");
+    EXPECT_DOUBLE_EQ(s.GetDuracion(), 60.5);
+
+    s.Calificar(4);
+    testing::internal::CaptureStdout();
+    s.MostrarInfo();
+    string output = testing::internal::GetCapturedStdout();
+    EXPECT_NE(output.find("Serie: SerieCover"), string::npos);
+    EXPECT_NE(output.find("Genero: Documental"), string::npos);
+    EXPECT_NE(output.find("Calificacion: 4"), string::npos);
+}
