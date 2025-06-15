@@ -31,3 +31,11 @@ TEST(VideoTest, MétodosGettersGenerales) {
     EXPECT_EQ(p.GetGenero(), "Action");
     EXPECT_DOUBLE_EQ(p.GetDuracion(), 120);
 }
+
+TEST(VideoConstructorTest, VerificaConstructorDeVideoDesdePelicula) {
+    Pelicula p("P100", "Duna", 155.0, "Sci-Fi");
+    EXPECT_EQ(p.GetId(), "P100");
+    EXPECT_EQ(p.GetTitulo(), "Duna");
+    EXPECT_DOUBLE_EQ(p.GetDuracion(), 155.0);
+    EXPECT_EQ(p.GetGenero(), "Sci-Fi");
+}

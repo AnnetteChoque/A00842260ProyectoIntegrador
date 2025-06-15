@@ -28,3 +28,11 @@ TEST(SerieTest, ObtenerEpisodiosListaCompleta) {
     EXPECT_EQ(eps.size(), 2);
     EXPECT_EQ(eps[0].GetTitulo(), "E1");
 }
+
+TEST(VideoConstructorTest, VerificaConstructorDeVideoDesdeSerie) {
+    Serie s("S100", "The 100", 45.0, "Sci-Fi");
+    EXPECT_EQ(s.GetId(), "S100");
+    EXPECT_EQ(s.GetTitulo(), "The 100");
+    EXPECT_DOUBLE_EQ(s.GetDuracion(), 45.0);
+    EXPECT_EQ(s.GetGenero(), "Sci-Fi");
+}
