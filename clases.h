@@ -22,13 +22,13 @@ using namespace std;
  */
 class Video {
 protected:
-    ///< Identificador único del video
+    /// @brief Identificador único del video
     string id;
-    ///< Título del video
+    /// @brief Título del video
     string titulo;
-    ///< Duración del video en minutos
+    /// @brief Duración del video en minutos
     double duracion;
-    ///< Género del video
+    /// @brief Género del video
     string genero;
     /// @brief Calificaciones recibidas por el video (rango: 1 a 5)
     vector<int> calificacion;
