@@ -6,16 +6,13 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-
 #ifndef CLASES_H
 #define CLASES_H
-
 #include <iostream>
 #include <string>
 #include <vector>
 #include <numeric>
 using namespace std;
-
 /**
  * Video
  * Clase base abstracta que representa un video (película o serie)
@@ -32,7 +29,6 @@ protected:
     string genero;
     /// @brief Calificaciones recibidas por el video (rango: 1 a 5)
     vector<int> calificacion;
-
 public:
     /**
      * Constructor de la clase Video
@@ -46,7 +42,6 @@ public:
          * @brief Destructor virtual de la clase Video
          */
     virtual ~Video() {}
-
     /**
      * Añade una calificación al video
      * calif Calificación entre 1 y 5
@@ -56,7 +51,6 @@ public:
             calificacion.push_back(calif);
         }
     }
-
     /**
      * Calcula la calificación promedio del video
      * Promedio de calificaciones, o 0 si no tiene calificaciones
@@ -67,7 +61,6 @@ public:
         }
         return accumulate(calificacion.begin(), calificacion.end(), 0.0) / calificacion.size();
     }
-
     /**
      * Obtiene el género del video
      * Cadena con el género
@@ -75,7 +68,6 @@ public:
     string GetGenero() const {
         return genero;
     }
-
     /**
      * Obtiene el título del video
      * Cadena con el título
@@ -101,7 +93,6 @@ public:
      */
     virtual void MostrarInfo() const = 0;
 };
-
 /**
  * Pelicula
  * Representa una película, derivada de Video
@@ -116,18 +107,15 @@ public:
      * _genero Género de la película
      */
     Pelicula(string _id, string _titulo, double _duracion, string _genero) : Video(_id, _titulo, _duracion, _genero) {}
-
     /**
      * Muestra la información de la película
      */
     void MostrarInfo() const override {
-        cout << "ID: " << id << endl;
-        cout << "Titulo: " << titulo << "\nDuracion: " << duracion
-        << "\nGenero: " << genero << "\nCalificacion: "
-        << ObtenerCalPromedio() << endl;
+        cout << "Pelicula: " << titulo << "\nDuracion: " << duracion
+             << "\nGenero: " << genero << "\nCalificacion: "
+             << ObtenerCalPromedio() << endl;
     }
 };
-
 /**
  * Episodio
  * Representa un episodio de una serie
@@ -136,13 +124,10 @@ class Episodio {
 private:
     ///< Título del episodio
     string titulo;
-
     ///< Número de temporada a la que pertenece
     int temporada;
-
     ///< Calificación del episodio (rango: 1 a 5)
     double calificacion;
-
 public:
     /**
      * Constructor de la clase Episodio
@@ -151,7 +136,6 @@ public:
      * _calificacion Calificación inicial del episodio
      */
     Episodio(string _titulo, int _temporada, double _calificacion = 0) : titulo(_titulo), temporada(_temporada), calificacion(_calificacion) {}
-
     /**
      * Muestra la información del episodio
      */
@@ -159,7 +143,6 @@ public:
         cout << "Episodio: " << titulo << "\nTemporada: " << temporada
              << "\nCalificacion: " << calificacion << endl;
     }
-
     /**
      * Obtiene la calificación del episodio
      * Calificación actual del episodio
@@ -167,14 +150,12 @@ public:
     double GetCalificacion() const {
         return calificacion;
     }
-
     /**
          * Obtiene el título del episodio
          */
     string GetTitulo() const {
         return titulo;
     }
-
     /**
      * Obtiene la temporada del episodio
      */
@@ -182,7 +163,6 @@ public:
         return temporada;
     }
 };
-
 /**
  * Serie
  * Representa una serie, derivada de Video, contiene varios episodios
@@ -191,7 +171,6 @@ class Serie : public Video {
 private:
     ///< Lista de episodios de la serie
     vector<Episodio> episodios;
-
 public:
     /**
      * Constructor de la clase Serie
@@ -201,7 +180,6 @@ public:
      *  _genero Género de la serie
      */
     Serie(string _id, string _titulo, double _duracion, string _genero) : Video(_id, _titulo, _duracion, _genero) {}
-
     /**
      * Agrega un nuevo episodio a la serie
      * ep Episodio a agregar
@@ -209,18 +187,14 @@ public:
     void AgregarEpisodio(const Episodio &ep) {
         episodios.push_back(ep);
     }
-
     /**
      * Muestra la información general de la serie
      */
     void MostrarInfo() const override {
-        cout << "ID: " << id << endl;
-        cout << "Titulo: " << titulo
-        << "\nDuracion: " << duracion
-        << "\nGenero: " << genero
-        << "\nCalificacion: " << ObtenerCalPromedio() << endl;
+        cout << "Serie: " << titulo
+             << "\nGenero: " << genero
+             << "\nCalificacion: " << ObtenerCalPromedio() << endl;
     }
-
     /**
      * Muestra los episodios con calificación mayor o igual a una dada
      * calif Calificación mínima a mostrar
@@ -239,7 +213,5 @@ public:
     const vector<Episodio>& GetEpisodios() const {
         return episodios;
     }
-
 };
-
 #endif // CLASES_H

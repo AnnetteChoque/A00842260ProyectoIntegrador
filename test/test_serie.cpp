@@ -1,63 +1,65 @@
 #include <gtest/gtest.h>
 #include "clases.h"
 
-TEST(SerieTest, CrearSerieYMostrarInfo) {
-    Serie s("S1", "Breaking Bad", 50, "Drama");
+TEST(SerieTest, ConstructorYGetters) {
+    Serie s("ser001", "Breaking Bad", 45, "Drama");
+
+    EXPECT_EQ(s.GetId(), "ser001");
+    EXPECT_EQ(s.GetTitulo(), "Breaking Bad");
+    EXPECT_DOUBLE_EQ(s.GetDuracion(), 45);
+    EXPECT_EQ(s.GetGenero(), "Drama");
+    EXPECT_DOUBLE_EQ(s.ObtenerCalPromedio(), 0);
+}
+
+TEST(SerieTest, AgregarEpisodios) {
+    Serie s("ser002", "Stranger Things", 50, "Sci-Fi");
+    Episodio e1("Chapter One", 1, 4.5);
+    Episodio e2("Chapter Two", 1, 4.8);
+
+    s.AgregarEpisodio(e1);
+    s.AgregarEpisodio(e2);
+
+    const vector<Episodio>& episodios = s.GetEpisodios();
+    EXPECT_EQ(episodios.size(), 2);
+    EXPECT_EQ(episodios[0].GetTitulo(), "Chapter One");
+    EXPECT_EQ(episodios[1].GetTitulo(), "Chapter Two");
+}
+
+TEST(SerieTest, MostrarInformacion) {
+    Serie s("ser003", "The Crown", 60, "Drama");
     testing::internal::CaptureStdout();
     s.MostrarInfo();
     string output = testing::internal::GetCapturedStdout();
-    EXPECT_NE(output.find("Serie: Breaking Bad"), string::npos);
+
+    EXPECT_NE(output.find("Serie: The Crown"), string::npos);
+    EXPECT_NE(output.find("Genero: Drama"), string::npos);
+    EXPECT_NE(output.find("Calificacion: 0"), string::npos);
 }
 
-TEST(SerieTest, AgregarEpisodiosYFiltrarPorCalificacion) {
-    Serie s("S2", "Dark", 60, "Thriller");
-    s.AgregarEpisodio(Episodio("E1", 1, 4.5));
-    s.AgregarEpisodio(Episodio("E2", 1, 3.0));
+TEST(SerieTest, MostrarEpisodiosCalificados) {
+    Serie s("ser004", "Game of Thrones", 55, "Fantasy");
+    s.AgregarEpisodio(Episodio("Winter Is Coming", 1, 4.5));
+    s.AgregarEpisodio(Episodio("The Kingsroad", 1, 4.2));
+    s.AgregarEpisodio(Episodio("The Rains of Castamere", 3, 5.0));
+
     testing::internal::CaptureStdout();
-    s.MostrarEpsCalificados(4.0);
+    s.MostrarEpsCalificados(4.5);
     string output = testing::internal::GetCapturedStdout();
-    EXPECT_NE(output.find("Episodio: E1"), string::npos);
-    EXPECT_EQ(output.find("Episodio: E2"), string::npos); // no se imprime
+
+    EXPECT_NE(output.find("Winter Is Coming"), string::npos);
+    EXPECT_NE(output.find("The Rains of Castamere"), string::npos);
+    EXPECT_EQ(output.find("The Kingsroad"), string::npos); // No debería aparecer
 }
 
-TEST(SerieTest, ObtenerEpisodiosListaCompleta) {
-    Serie s("S3", "Stranger Things", 55, "Adventure");
-    s.AgregarEpisodio(Episodio("E1", 1, 5.0));
-    s.AgregarEpisodio(Episodio("E2", 2, 4.0));
-    auto eps = s.GetEpisodios();
-    EXPECT_EQ(eps.size(), 2);
-    EXPECT_EQ(eps[0].GetTitulo(), "E1");
-}
+TEST(SerieTest, CalificacionPromedio) {
+    Serie s("ser005", "The Mandalorian", 40, "Sci-Fi");
+    s.AgregarEpisodio(Episodio("Chapter 1", 1, 4.5));
+    s.AgregarEpisodio(Episodio("Chapter 2", 1, 4.8));
+    s.AgregarEpisodio(Episodio("Chapter 3", 1, 5.0));
 
-TEST(VideoConstructorTest, VerificaConstructorDeVideoDesdeSerie) {
-    Serie s("S100", "The 100", 45.0, "Sci-Fi");
-    EXPECT_EQ(s.GetId(), "S100");
-    EXPECT_EQ(s.GetTitulo(), "The 100");
-    EXPECT_DOUBLE_EQ(s.GetDuracion(), 45.0);
-    EXPECT_EQ(s.GetGenero(), "Sci-Fi");
-}
-
-TEST(CoverageTest, ConstructorSerieVideoBase) {
-    Serie s("S200", "Test Show", 45.0, "Thriller");
-    EXPECT_EQ(s.GetId(), "S200");
-    EXPECT_EQ(s.GetTitulo(), "Test Show");
-    EXPECT_EQ(s.GetGenero(), "Thriller");
-    EXPECT_DOUBLE_EQ(s.GetDuracion(), 45.0);
-}
-
-TEST(CoverageTest, ConstructorSerie_Completo) {
-    Serie s("S999", "SerieCover", 60.5, "Documental");
-
-    EXPECT_EQ(s.GetId(), "S999");
-    EXPECT_EQ(s.GetTitulo(), "SerieCover");
-    EXPECT_EQ(s.GetGenero(), "Documental");
-    EXPECT_DOUBLE_EQ(s.GetDuracion(), 60.5);
-
+    // La serie calcula el promedio de sus propias calificaciones, no de los episodios
     s.Calificar(4);
-    testing::internal::CaptureStdout();
-    s.MostrarInfo();
-    string output = testing::internal::GetCapturedStdout();
-    EXPECT_NE(output.find("Serie: SerieCover"), string::npos);
-    EXPECT_NE(output.find("Genero: Documental"), string::npos);
-    EXPECT_NE(output.find("Calificacion: 4"), string::npos);
+    s.Calificar(5);
+
+    EXPECT_DOUBLE_EQ(s.ObtenerCalPromedio(), 4.5);
 }
