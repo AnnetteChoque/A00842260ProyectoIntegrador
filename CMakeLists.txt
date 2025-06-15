@@ -56,9 +56,9 @@ if(ENABLE_TESTING)
     endfunction()
 
     # Archivos de pruebas
-    add_test_executable(test_episodio test/test_episodio.cpp)
-    add_test_executable(test_pelicula test/test_pelicula.cpp)
     add_test_executable(test_app test/test_app.cpp)
+    add_test_executable(test_episodio test/test_episodio.cpp)
+    add_test_executable(test_pelicula test/test_app.cpp)
 
     # Generar reportes de cobertura
     if (ENABLE_COVERAGE)
