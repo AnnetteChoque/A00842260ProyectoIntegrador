@@ -44,7 +44,7 @@ TEST(CoverageTest, MostrarEpsCalificados_SinCoincidencias) {
 
 TEST(CoverageTest, MostrarEpsCalificados_EjecutaMostrarInfo) {
     Serie s("S2025", "SerieEpisodio", 45, "Misterio");
-    Episodio ep1("Episodio Bueno", 1, 5.0); 
+    Episodio ep1("Episodio Bueno", 1, 5.0);
     s.AgregarEpisodio(ep1);
 
     testing::internal::CaptureStdout();
