@@ -79,3 +79,12 @@ TEST(VideoTest, GetGenero_GetTitulo_MultipleVideos) {
     EXPECT_EQ(p1.GetTitulo(), "Inception");
     EXPECT_EQ(p2.GetTitulo(), "Matrix");
 }
+
+TEST(VideoTest, PromedioConListaVacia) {
+    Video* video = new Pelicula("P001", "Inception", 148, "accion");
+
+    // No agregamos calificaciones
+    EXPECT_DOUBLE_EQ(video->ObtenerCalPromedio(), 0);
+
+    delete video;
+}
