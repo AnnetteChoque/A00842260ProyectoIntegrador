@@ -1,62 +1,62 @@
+
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include "clases.h"
 using namespace std;
 
+/**
+    Vector global que almacena todos los videos cargados (películas y series)
+ */
 vector<Video*> videos;
 
+/**
+      Carga datos iniciales de prueba al vector 'videos'
+ */
 void cargarDatos() {
-
-    // Película: Inception
+    // Películas
     Pelicula* p1 = new Pelicula("P001", "Inception", 148, "accion");
     p1->calificar(4);
     p1->calificar(5);
     videos.push_back(p1);
 
-    // Película: El Padrino
     Pelicula* p2 = new Pelicula("P002", "El Padrino", 175, "drama");
     p2->calificar(5);
     p2->calificar(5);
     p2->calificar(4);
     videos.push_back(p2);
 
-    // Película: The Dark Knight
     Pelicula* p3 = new Pelicula("P003", "The Dark Knight", 152, "accion");
     p3->calificar(5);
     p3->calificar(4);
     videos.push_back(p3);
 
-    // Película: Forrest Gump
     Pelicula* p4 = new Pelicula("P004", "Forrest Gump", 142, "drama");
     p4->calificar(4.5);
     p4->calificar(5);
     videos.push_back(p4);
 
-    // Película: Interstellar
     Pelicula* p5 = new Pelicula("P005", "Interstellar", 169, "ciencia ficcion");
     p5->calificar(5);
     p5->calificar(4.8);
     videos.push_back(p5);
 
-    // Película: Titanic
     Pelicula* p6 = new Pelicula("P006", "Titanic", 194, "drama");
     p6->calificar(4.7);
     p6->calificar(4.9);
     videos.push_back(p6);
 
-    // Película: Gladiator
     Pelicula* p7 = new Pelicula("P007", "Gladiator", 155, "accion");
     p7->calificar(4.6);
     p7->calificar(5);
     videos.push_back(p7);
 
-    // Película: Avengers Endgame
     Pelicula* p8 = new Pelicula("P008", "Avengers Endgame", 181, "accion");
     p8->calificar(5);
     p8->calificar(5);
     videos.push_back(p8);
 
+    // Series
     Serie* s1 = new Serie("S001", "Stranger Things", 50, "misterio");
     s1->agregarEpisodio(Episodio("Capitulo Uno", 1, 4.5));
     s1->agregarEpisodio(Episodio("Capitulo Dos", 1, 4.7));
@@ -98,9 +98,11 @@ void cargarDatos() {
     s8->agregarEpisodio(Episodio("El Hombre del Futuro", 3, 4.7));
     s8->agregarEpisodio(Episodio("Vuelta a la Velocidad", 4, 4.8));
     videos.push_back(s8);
-
 }
 
+/**
+     Muestra videos filtrados por calificación mínima o género
+ */
 void mostrarPorCalifGenero() {
     int op;
     cout << "1. Por calificacion\n2. Por genero\nOpcion: ";
@@ -114,23 +116,30 @@ void mostrarPorCalifGenero() {
         for (auto vid : videos)
             if (vid->obtenerCalPromedio() >= calif)
                 vid->mostrarInfo();
-    } else {
+    } else if (op == 2) {
         string genero;
+        cin.ignore();
         cout << "Genero: ";
-        cin >> genero;
+        getline(cin, genero);
 
         for (auto vid : videos)
             if (vid->getGenero() == genero)
                 vid->mostrarInfo();
+    } else {
+        cout << "Opcion invalida.\n";
     }
 }
 
+/**
+       Muestra los episodios de una serie con calificación mayor o igual a un valor dado
+ */
 void mostrarEpsSerie() {
     string titulo;
     double calif;
+
     cin.ignore();
     cout << "Titulo de la serie: ";
-    getline(std::cin, titulo);
+    getline(cin, titulo);
     cout << "Calificacion minima del episodio: ";
     cin >> calif;
 
@@ -142,6 +151,9 @@ void mostrarEpsSerie() {
     }
 }
 
+/**
+     Muestra películas con calificación mínima
+ */
 void mostrarPelsPorCalif() {
     double calif;
     cout << "Calificacion minima: ";
@@ -154,25 +166,37 @@ void mostrarPelsPorCalif() {
     }
 }
 
+/**
+     Permite calificar un video existente
+ */
 void calificarVideo() {
     cin.ignore();
     string titulo;
     int valor;
+
     cout << "Titulo del video: ";
     getline(cin, titulo);
     cout << "Valor (1-5): ";
     cin >> valor;
 
+    bool encontrado = false;
     for (auto vid : videos) {
         if (vid->getTitulo() == titulo) {
             vid->calificar(valor);
             cout << "Calificacion agregada.\n";
-            return;
+            encontrado = true;
+            break;
         }
     }
-    cout << "Video no encontrado.\n";
+
+    if (!encontrado)
+        cout << "Video no encontrado.\n";
 }
 
+/**
+      Función principal del programa
+       Código de salida
+ */
 int main() {
     int opcion;
 
@@ -190,27 +214,34 @@ int main() {
         cout << "Opcion: ";
         cin >> opcion;
 
-        switch (opcion) {
-            case 1: {
+        switch(opcion) {
+            case 1:
                 cout << "Los datos ya fueron cargados al iniciar.\n";
                 break;
-            }
-            case 2: mostrarPorCalifGenero();
+            case 2:
+                mostrarPorCalifGenero();
                 break;
-            case 3: mostrarEpsSerie();
+            case 3:
+                mostrarEpsSerie();
                 break;
-            case 4: mostrarPelsPorCalif();
+            case 4:
+                mostrarPelsPorCalif();
                 break;
-            case 5: calificarVideo();
+            case 5:
+                calificarVideo();
                 break;
-            case 0: cout << "Saliendo...\n";
+            case 0:
+                cout << "Saliendo...\n";
                 break;
-            default: cout << "Opcion invalida.\n";
+            default:
+                cout << "Opcion invalida.\n";
         }
     } while (opcion != 0);
 
+    // Liberar memoria
     for (auto v : videos) {
         delete v;
     }
+
     return 0;
 }
