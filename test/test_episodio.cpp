@@ -12,6 +12,7 @@ TEST(SerieTest, AgregarEpisodios) {
 
     EXPECT_NE(output.find("Capitulo Uno"), string::npos);
     EXPECT_NE(output.find("Capitulo Dos"), string::npos);
+}
 
 TEST(SerieTest, FiltrarEpisodiosPorCalificacion) {
     Serie s("S002", "The Mandalorian", 45, "accion");
