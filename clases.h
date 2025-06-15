@@ -20,13 +20,16 @@ using namespace std;
  */
 class Video {
 protected:
-    string id, titulo, genero;  ///< atributes
-    double duracion; ///< atributes
-    vector<int> calificacion; ///< atributes
+    ///< atributes
+    string id, titulo, genero;
+    ///< atributes
+    double duracion;
+    ///< atributes
+    vector<int> calificacion;
 
 public:
     Video(string id, string titulo, double duracion, string genero)
-        : id(id), titulo(titulo), duracion(duracion), genero(genero) {}
+        : id(_id), titulo(_titulo), duracion(_duracion), genero(_genero) {}
     /**
              variable names
              */
@@ -70,6 +73,13 @@ public:
 
 class Pelicula : public Video {
 public:
+    /**
+     * Constructor de la clase Video.
+     * videoId Identificador único del video.
+     * videoTitulo Título del video.
+     * videoDuracion Duración del video en minutos.
+     * videoGenero Género del video.
+     */
     Pelicula(string id, string titulo, double duracion, string genero)
         : Video(id, titulo, duracion, genero) {}
     /**
