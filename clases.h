@@ -199,7 +199,7 @@ public:
     void MostrarEpsCalificados(double calif) const {
         for (const auto& ep : episodios) {
             if (ep.GetCalificacion() >= calif) {
-                ep.mostrarInfo();
+                ep.MostrarInfo();
             }
         }
     }
