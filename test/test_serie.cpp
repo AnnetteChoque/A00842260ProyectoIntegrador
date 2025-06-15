@@ -36,3 +36,11 @@ TEST(VideoConstructorTest, VerificaConstructorDeVideoDesdeSerie) {
     EXPECT_DOUBLE_EQ(s.GetDuracion(), 45.0);
     EXPECT_EQ(s.GetGenero(), "Sci-Fi");
 }
+
+TEST(CoverageTest, ConstructorSerieVideoBase) {
+    Serie s("S200", "Test Show", 45.0, "Thriller");
+    EXPECT_EQ(s.GetId(), "S200");
+    EXPECT_EQ(s.GetTitulo(), "Test Show");
+    EXPECT_EQ(s.GetGenero(), "Thriller");
+    EXPECT_DOUBLE_EQ(s.GetDuracion(), 45.0);
+}

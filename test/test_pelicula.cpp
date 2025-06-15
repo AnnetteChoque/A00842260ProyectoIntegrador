@@ -39,3 +39,11 @@ TEST(VideoConstructorTest, VerificaConstructorDeVideoDesdePelicula) {
     EXPECT_DOUBLE_EQ(p.GetDuracion(), 155.0);
     EXPECT_EQ(p.GetGenero(), "Sci-Fi");
 }
+
+TEST(CoverageTest, ConstructorPeliculaVideoBase) {
+    Pelicula p("P100", "Test Movie", 90.5, "Comedy");
+    EXPECT_EQ(p.GetId(), "P100");
+    EXPECT_EQ(p.GetTitulo(), "Test Movie");
+    EXPECT_EQ(p.GetGenero(), "Comedy");
+    EXPECT_DOUBLE_EQ(p.GetDuracion(), 90.5);
+}
