@@ -121,9 +121,10 @@ public:
      * Muestra la información de la película
      */
     void MostrarInfo() const override {
+        cout << "ID: " << id << endl;
         cout << "Pelicula: " << titulo << "\nDuracion: " << duracion
-             << "\nGenero: " << genero << "\nCalificacion: "
-             << ObtenerCalPromedio() << endl;
+        << "\nGenero: " << genero << "\nCalificacion: "
+        << ObtenerCalPromedio() << endl;
     }
 };
 
@@ -213,9 +214,11 @@ public:
      * Muestra la información general de la serie
      */
     void MostrarInfo() const override {
+        cout << "ID: " << id << endl;
         cout << "Serie: " << titulo
-             << "\nGenero: " << genero
-             << "\nCalificacion: " << ObtenerCalPromedio() << endl;
+        << "\nDuracion: " << duracion
+        << "\nGenero: " << genero
+        << "\nCalificacion: " << ObtenerCalPromedio() << endl;
     }
 
     /**

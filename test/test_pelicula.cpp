@@ -74,8 +74,8 @@ TEST(CoverageFix, PeliculaConstructor_CubreVideo) {
     p.MostrarInfo();
     std::string out = testing::internal::GetCapturedStdout();
 
-    EXPECT_NE(out.find("P001"), std::string::npos);
-    EXPECT_NE(out.find("TituloPeli"), std::string::npos);
+    EXPECT_NE(out.find("ID: P001"), std::string::npos);
+    EXPECT_NE(out.find("Titulo: TituloPeli"), std::string::npos);
     EXPECT_NE(out.find("Duracion: 99.9"), std::string::npos);
     EXPECT_NE(out.find("Genero: Drama"), std::string::npos);
     EXPECT_NE(out.find("Calificacion: 4"), std::string::npos);
@@ -89,8 +89,8 @@ TEST(CoverageFix, SerieConstructor_CubreVideo) {
     s.MostrarInfo();
     std::string out = testing::internal::GetCapturedStdout();
 
-    EXPECT_NE(out.find("S001"), std::string::npos);
-    EXPECT_NE(out.find("TituloSerie"), std::string::npos);
+    EXPECT_NE(out.find("ID: S001"), std::string::npos);
+    EXPECT_NE(out.find("Titulo: TituloSerie"), std::string::npos);
     EXPECT_NE(out.find("Duracion: 88.8"), std::string::npos);
     EXPECT_NE(out.find("Genero: Suspenso"), std::string::npos);
     EXPECT_NE(out.find("Calificacion: 5"), std::string::npos);
