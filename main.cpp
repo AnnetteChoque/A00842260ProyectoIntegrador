@@ -13,97 +13,97 @@ vector<Video*> videos;
 /**
       Carga datos iniciales de prueba al vector 'videos'
  */
-void cargarDatos() {
+void CargarDatos() {
     // Películas
     Pelicula* p1 = new Pelicula("P001", "Inception", 148, "accion");
-    p1->calificar(4);
-    p1->calificar(5);
+    p1->Calificar(4);
+    p1->Calificar(5);
     videos.push_back(p1);
 
     Pelicula* p2 = new Pelicula("P002", "El Padrino", 175, "drama");
-    p2->calificar(5);
-    p2->calificar(5);
-    p2->calificar(4);
+    p2->Calificar(5);
+    p2->Calificar(5);
+    p2->Calificar(4);
     videos.push_back(p2);
 
     Pelicula* p3 = new Pelicula("P003", "The Dark Knight", 152, "accion");
-    p3->calificar(5);
-    p3->calificar(4);
+    p3->Calificar(5);
+    p3->Calificar(4);
     videos.push_back(p3);
 
     Pelicula* p4 = new Pelicula("P004", "Forrest Gump", 142, "drama");
-    p4->calificar(4.5);
-    p4->calificar(5);
+    p4->Calificar(4.5);
+    p4->Calificar(5);
     videos.push_back(p4);
 
     Pelicula* p5 = new Pelicula("P005", "Interstellar", 169, "ciencia ficcion");
-    p5->calificar(5);
-    p5->calificar(4.8);
+    p5->Calificar(5);
+    p5->Calificar(4.8);
     videos.push_back(p5);
 
     Pelicula* p6 = new Pelicula("P006", "Titanic", 194, "drama");
-    p6->calificar(4.7);
-    p6->calificar(4.9);
+    p6->Calificar(4.7);
+    p6->Calificar(4.9);
     videos.push_back(p6);
 
     Pelicula* p7 = new Pelicula("P007", "Gladiator", 155, "accion");
-    p7->calificar(4.6);
-    p7->calificar(5);
+    p7->Calificar(4.6);
+    p7->Calificar(5);
     videos.push_back(p7);
 
     Pelicula* p8 = new Pelicula("P008", "Avengers Endgame", 181, "accion");
-    p8->calificar(5);
-    p8->calificar(5);
+    p8->Calificar(5);
+    p8->Calificar(5);
     videos.push_back(p8);
 
     // Series
     Serie* s1 = new Serie("S001", "Stranger Things", 50, "misterio");
-    s1->agregarEpisodio(Episodio("Capitulo Uno", 1, 4.5));
-    s1->agregarEpisodio(Episodio("Capitulo Dos", 1, 4.7));
+    s1->AgregarEpisodio(Episodio("Capitulo Uno", 1, 4.5));
+    s1->AgregarEpisodio(Episodio("Capitulo Dos", 1, 4.7));
     videos.push_back(s1);
 
     Serie* s2 = new Serie("S002", "The Mandalorian", 45, "accion");
-    s2->agregarEpisodio(Episodio("Una Nueva Esperanza", 1, 4.6));
-    s2->agregarEpisodio(Episodio("La Búsqueda", 2, 4.3));
+    s2->AgregarEpisodio(Episodio("Una Nueva Esperanza", 1, 4.6));
+    s2->AgregarEpisodio(Episodio("La Búsqueda", 2, 4.3));
     videos.push_back(s2);
 
     Serie* s3 = new Serie("S003", "Breaking Bad", 47, "drama");
-    s3->agregarEpisodio(Episodio("Piloto", 1, 4.8));
-    s3->agregarEpisodio(Episodio("Proceso Químico", 1, 4.7));
+    s3->AgregarEpisodio(Episodio("Piloto", 1, 4.8));
+    s3->AgregarEpisodio(Episodio("Proceso Químico", 1, 4.7));
     videos.push_back(s3);
 
     Serie* s4 = new Serie("S004", "Friends", 22, "comedia");
-    s4->agregarEpisodio(Episodio("La Tormenta", 1, 4.5));
-    s4->agregarEpisodio(Episodio("La Mudanza", 2, 4.4));
+    s4->AgregarEpisodio(Episodio("La Tormenta", 1, 4.5));
+    s4->AgregarEpisodio(Episodio("La Mudanza", 2, 4.4));
     videos.push_back(s4);
 
     Serie* s5 = new Serie("S005", "The Office", 23, "comedia");
-    s5->agregarEpisodio(Episodio("La Entrevista", 1, 4.6));
-    s5->agregarEpisodio(Episodio("Fiesta de Oficina", 3, 4.5));
+    s5->AgregarEpisodio(Episodio("La Entrevista", 1, 4.6));
+    s5->AgregarEpisodio(Episodio("Fiesta de Oficina", 3, 4.5));
     videos.push_back(s5);
 
     Serie* s6 = new Serie("S006", "The Crown", 60, "drama");
-    s6->agregarEpisodio(Episodio("Coronacion", 1, 4.7));
-    s6->agregarEpisodio(Episodio("Escandalo Real", 2, 4.6));
+    s6->AgregarEpisodio(Episodio("Coronacion", 1, 4.7));
+    s6->AgregarEpisodio(Episodio("Escandalo Real", 2, 4.6));
     videos.push_back(s6);
 
     Serie* s7 = new Serie("S007", "La Casa de Papel", 50, "suspenso");
-    s7->agregarEpisodio(Episodio("Robo Historico", 1, 4.8));
-    s7->agregarEpisodio(Episodio("El Plan", 2, 4.9));
+    s7->AgregarEpisodio(Episodio("Robo Historico", 1, 4.8));
+    s7->AgregarEpisodio(Episodio("El Plan", 2, 4.9));
     videos.push_back(s7);
 
     Serie* s8 = new Serie("S008", "The Flash", 43, "accion");
-    s8->agregarEpisodio(Episodio("La Partida de Barry", 1, 4.6));
-    s8->agregarEpisodio(Episodio("Fuerza de la Naturaleza", 2, 4.5));
-    s8->agregarEpisodio(Episodio("El Hombre del Futuro", 3, 4.7));
-    s8->agregarEpisodio(Episodio("Vuelta a la Velocidad", 4, 4.8));
+    s8->AgregarEpisodio(Episodio("La Partida de Barry", 1, 4.6));
+    s8->AgregarEpisodio(Episodio("Fuerza de la Naturaleza", 2, 4.5));
+    s8->AgregarEpisodio(Episodio("El Hombre del Futuro", 3, 4.7));
+    s8->AgregarEpisodio(Episodio("Vuelta a la Velocidad", 4, 4.8));
     videos.push_back(s8);
 }
 
 /**
      Muestra videos filtrados por calificación mínima o género
  */
-void mostrarPorCalifGenero() {
+void MostrarPorCalifGenero() {
     int op;
     cout << "1. Por calificacion\n2. Por genero\nOpcion: ";
     cin >> op;
@@ -114,7 +114,7 @@ void mostrarPorCalifGenero() {
         cin >> calif;
 
         for (auto vid : videos)
-            if (vid->obtenerCalPromedio() >= calif)
+            if (vid->ObtenerCalPromedio() >= calif)
                 vid->mostrarInfo();
     } else if (op == 2) {
         string genero;
@@ -123,8 +123,8 @@ void mostrarPorCalifGenero() {
         getline(cin, genero);
 
         for (auto vid : videos)
-            if (vid->getGenero() == genero)
-                vid->mostrarInfo();
+            if (vid->GetGenero() == genero)
+                vid->MostrarInfo();
     } else {
         cout << "Opcion invalida.\n";
     }
@@ -133,7 +133,7 @@ void mostrarPorCalifGenero() {
 /**
        Muestra los episodios de una serie con calificación mayor o igual a un valor dado
  */
-void mostrarEpsSerie() {
+void MostrarEpsSerie() {
     string titulo;
     double calif;
 
@@ -145,8 +145,8 @@ void mostrarEpsSerie() {
 
     for (auto vid : videos) {
         Serie* s = dynamic_cast<Serie*>(vid);
-        if (s && s->getTitulo() == titulo) {
-            s->mostrarEpsCalificados(calif);
+        if (s && s->GetTitulo() == titulo) {
+            s->MostrarEpsCalificados(calif);
         }
     }
 }
@@ -154,15 +154,15 @@ void mostrarEpsSerie() {
 /**
      Muestra películas con calificación mínima
  */
-void mostrarPelsPorCalif() {
+void MostrarPelsPorCalif() {
     double calif;
     cout << "Calificacion minima: ";
     cin >> calif;
 
     for (auto vid : videos) {
         Pelicula* p = dynamic_cast<Pelicula*>(vid);
-        if (p && p->obtenerCalPromedio() >= calif)
-            p->mostrarInfo();
+        if (p && p->ObtenerCalPromedio() >= calif)
+            p->MostrarInfo();
     }
 }
 
@@ -181,8 +181,8 @@ void calificarVideo() {
 
     bool encontrado = false;
     for (auto vid : videos) {
-        if (vid->getTitulo() == titulo) {
-            vid->calificar(valor);
+        if (vid->GetTitulo() == titulo) {
+            vid->Calificar(valor);
             cout << "Calificacion agregada.\n";
             encontrado = true;
             break;
@@ -201,7 +201,7 @@ int main() {
     int opcion;
 
     cout << "Cargando datos directamente desde el programa...\n";
-    cargarDatos();
+    CargarDatos();
 
     do {
         cout << "\n--- MENU ---\n";
@@ -219,16 +219,16 @@ int main() {
                 cout << "Los datos ya fueron cargados al iniciar.\n";
                 break;
             case 2:
-                mostrarPorCalifGenero();
+                MostrarPorCalifGenero();
                 break;
             case 3:
-                mostrarEpsSerie();
+                MostrarEpsSerie();
                 break;
             case 4:
-                mostrarPelsPorCalif();
+                MostrarPelsPorCalif();
                 break;
             case 5:
-                calificarVideo();
+                CalificarVideo();
                 break;
             case 0:
                 cout << "Saliendo...\n";

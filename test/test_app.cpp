@@ -10,12 +10,12 @@ TEST(AppTest, FiltrarPeliculasPorCalificacion) {
     vector<Video*> videos;
 
     Pelicula* p1 = new Pelicula("P001", "Inception", 148, "accion");
-    p1->calificar(5);
-    p1->calificar(5);
+    p1->Calificar(5);
+    p1->Calificar(5);
 
     Pelicula* p2 = new Pelicula("P002", "El Padrino", 175, "drama");
-    p2->calificar(4);
-    p2->calificar(3);
+    p2->Calificar(4);
+    p2->Calificar(3);
 
     videos.push_back(p1);
     videos.push_back(p2);
@@ -23,8 +23,8 @@ TEST(AppTest, FiltrarPeliculasPorCalificacion) {
     testing::internal::CaptureStdout();
     for (auto vid : videos) {
         Pelicula* p = dynamic_cast<Pelicula*>(vid);
-        if (p && p->obtenerCalPromedio() >= 4.5)
-            p->mostrarInfo();
+        if (p && p->ObtenerCalPromedio() >= 4.5)
+            p->MostrarInfo();
     }
     string output = testing::internal::GetCapturedStdout();
 

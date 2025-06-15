@@ -7,14 +7,14 @@
 
 TEST(VideoTest, CalificacionesValidas) {
     Pelicula p("P001", "Inception", 148, "accion");
-    p.calificar(3);
-    p.agregarCalificacion(4);
-    EXPECT_EQ(p.calificacionPromedio(), 3.5);
+    p.Calificar(3);
+    p.AgregarCalificacion(4);
+    EXPECT_EQ(p.CalificacionPromedio(), 3.5);
 }
 
 TEST(VideoTest, CalificacionesInvalidas) {
     Pelicula p("P002", "Matrix", 120, "ciencia ficcion");
-    p.calificar(0);
-    p.agregarCalificacion(6);
-    EXPECT_EQ(p.obtenerCalPromedio(), 0.0);
+    p.Calificar(0);
+    p.AgregarCalificacion(6);
+    EXPECT_EQ(p.ObtenerCalPromedio(), 0.0);
 }
