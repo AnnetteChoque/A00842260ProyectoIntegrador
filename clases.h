@@ -215,6 +215,10 @@ public:
             }
         }
     }
+
+    const vector<Episodio>& GetEpisodios() const {
+        return episodios;
+    }
 };
 
 #endif // CLASES_H
