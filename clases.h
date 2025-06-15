@@ -166,6 +166,20 @@ public:
     double GetCalificacion() const {
         return calificacion;
     }
+
+    /**
+         * Obtiene el título del episodio
+         */
+    string GetTitulo() const {
+        return titulo;
+    }
+
+    /**
+     * Obtiene la temporada del episodio
+     */
+    int GetTemporada() const {
+        return temporada;
+    }
 };
 
 /**
