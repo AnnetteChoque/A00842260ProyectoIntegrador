@@ -41,8 +41,7 @@ public:
      * _duracion Duración del video en minutos
      * _genero Género del video
      */
-    Video(string _id, string _titulo, double _duracion, string _genero)
-        : id(_id), titulo(_titulo), duracion(_duracion), genero(_genero) {}
+    Video(string _id, string _titulo, double _duracion, string _genero) : id(_id), titulo(_titulo), duracion(_duracion), genero(_genero) {}
     /**
          * @brief Destructor virtual de la clase Video
          */
@@ -52,7 +51,7 @@ public:
      * Añade una calificación al video
      * calif Calificación entre 1 y 5
      */
-    void calificar(int calif) {
+    void Calificar(int calif) {
         if (calif >= 1 && calif <= 5) {
             calificacion.push_back(calif);
         }
@@ -62,7 +61,7 @@ public:
      * Calcula la calificación promedio del video
      * Promedio de calificaciones, o 0 si no tiene calificaciones
      */
-    double obtenerCalPromedio() const {
+    double ObtenerCalPromedio() const {
         if (calificacion.empty()) {
             return 0;
         }
@@ -73,7 +72,7 @@ public:
      * Obtiene el género del video
      * Cadena con el género
      */
-    string getGenero() const {
+    string GetGenero() const {
         return genero;
     }
 
@@ -81,14 +80,14 @@ public:
      * Obtiene el título del video
      * Cadena con el título
      */
-    string getTitulo() const {
+    string GetTitulo() const {
         return titulo;
     }
 
     /**
      * Muestra la información del video (método abstracto)
      */
-    virtual void mostrarInfo() const = 0;
+    virtual void MostrarInfo() const = 0;
 };
 
 /**
@@ -104,16 +103,15 @@ public:
      * _duracion Duración de la película en minutos
      * _genero Género de la película
      */
-    Pelicula(string _id, string _titulo, double _duracion, string _genero)
-        : Video(_id, _titulo, _duracion, _genero) {}
+    Pelicula(string _id, string _titulo, double _duracion, string _genero) : Video(_id, _titulo, _duracion, _genero) {}
 
     /**
      * Muestra la información de la película
      */
-    void mostrarInfo() const override {
+    void MostrarInfo() const override {
         cout << "Pelicula: " << titulo << "\nDuracion: " << duracion
              << "\nGenero: " << genero << "\nCalificacion: "
-             << obtenerCalPromedio() << endl;
+             << ObtenerCalPromedio() << endl;
     }
 };
 
@@ -139,13 +137,12 @@ public:
      * _temporada Temporada a la que pertenece
      * _calificacion Calificación inicial del episodio
      */
-    Episodio(string _titulo, int _temporada, double _calificacion = 0)
-        : titulo(_titulo), temporada(_temporada), calificacion(_calificacion) {}
+    Episodio(string _titulo, int _temporada, double _calificacion = 0) : titulo(_titulo), temporada(_temporada), calificacion(_calificacion) {}
 
     /**
      * Muestra la información del episodio
      */
-    void mostrarInfo() const {
+    void MostrarInfo() const {
         cout << "Episodio: " << titulo << "\nTemporada: " << temporada
              << "\nCalificacion: " << calificacion << endl;
     }
@@ -154,7 +151,7 @@ public:
      * Obtiene la calificación del episodio
      * Calificación actual del episodio
      */
-    double getCalificacion() const {
+    double GetCalificacion() const {
         return calificacion;
     }
 };
@@ -176,34 +173,34 @@ public:
      * duracion Duración promedio de los episodios
      *  _genero Género de la serie
      */
-    Serie(string _id, string _titulo, double _duracion, string _genero)
-        : Video(_id, _titulo, _duracion, _genero) {}
+    Serie(string _id, string _titulo, double _duracion, string _genero) : Video(_id, _titulo, _duracion, _genero) {}
 
     /**
      * Agrega un nuevo episodio a la serie
      * ep Episodio a agregar
      */
-    void agregarEpisodio(const Episodio &ep) {
+    void AgregarEpisodio(const Episodio &ep) {
         episodios.push_back(ep);
     }
 
     /**
      * Muestra la información general de la serie
      */
-    void mostrarInfo() const override {
+    void MostrarInfo() const override {
         cout << "Serie: " << titulo
              << "\nGenero: " << genero
-             << "\nCalificacion: " << obtenerCalPromedio() << endl;
+             << "\nCalificacion: " << ObtenerCalPromedio() << endl;
     }
 
     /**
      * Muestra los episodios con calificación mayor o igual a una dada
      * calif Calificación mínima a mostrar
      */
-    void mostrarEpsCalificados(double calif) const {
+    void MostrarEpsCalificados(double calif) const {
         for (const auto& ep : episodios) {
-            if (ep.getCalificacion() >= calif)
+            if (ep.GetCalificacion() >= calif) {
                 ep.mostrarInfo();
+            }
         }
     }
 };
