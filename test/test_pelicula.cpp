@@ -74,3 +74,20 @@ TEST(DurationTest, DuracionInvalida) {
     Pelicula p2("mov008", "Negative Film", -10, "Error");
     EXPECT_DOUBLE_EQ(p2.GetDuracion(), -10.0);
 }
+
+TEST(VideoTest, PromedioCalificacionPrecision) {
+    Pelicula p("mov010", "Precision Test", 100, "Math");
+    p.Calificar(3);
+    p.Calificar(4);
+    p.Calificar(5);
+
+    EXPECT_NEAR(p.ObtenerCalPromedio(), 4.0, 0.0001);
+}
+
+TEST(VideoTest, CalificacionConDecimales) {
+
+    Pelicula p("mov011", "Decimal Test", 90, "Math");
+
+    p.Calificar(static_cast<int>(4.8));
+    EXPECT_DOUBLE_EQ(p.ObtenerCalPromedio(), 4.0);
+}

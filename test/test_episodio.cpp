@@ -40,3 +40,20 @@ TEST(EmptyStringTest, CamposVacios) {
     Episodio e("", 0, 0.0);
     EXPECT_TRUE(e.GetTitulo().empty());
 }
+
+
+TEST(EpisodioTest, MostrarInfoConDecimales) {
+    Episodio e("Decimal Episode", 2, 4.375);
+    testing::internal::CaptureStdout();
+    e.MostrarInfo();
+    string output = testing::internal::GetCapturedStdout();
+
+    EXPECT_NE(output.find("4.375"), string::npos);
+}
+
+TEST(EpisodioTest, EpisodioSinTitulo) {
+    Episodio e("", 1, 3.0);
+    EXPECT_TRUE(e.GetTitulo().empty());
+    e = Episodio("Non-empty", 1, 3.0);
+    EXPECT_FALSE(e.GetTitulo().empty());
+}

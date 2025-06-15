@@ -122,3 +122,44 @@ TEST(TemporadaTest, TemporadaInvalida) {
     Episodio e("Invalid Season", -1, 3.0);
     EXPECT_EQ(e.GetTemporada(), -1);
 }
+
+TEST(SerieTest, AgregarMultiplesEpisodios) {
+    Serie s("ser012", "Stress Test", 30, "Testing");
+
+    for(int i = 0; i < 1000; i++) {
+        s.AgregarEpisodio(Episodio("Ep " + to_string(i), i%10 + 1, i%5 + 1));
+    }
+
+    EXPECT_EQ(s.GetEpisodios().size(), 1000);
+}
+
+TEST(SerieTest, EpisodiosMismaTemporada) {
+    Serie s("ser013", "Same Season", 25, "Test");
+
+    for(int i = 1; i <= 10; i++) {
+        s.AgregarEpisodio(Episodio("Ep " + to_string(i), 1, 4.0));
+    }
+
+    testing::internal::CaptureStdout();
+    s.MostrarEpsCalificados(3.9);
+    string output = testing::internal::GetCapturedStdout();
+
+    for(int i = 1; i <= 10; i++) {
+        EXPECT_NE(output.find("Ep " + to_string(i)), string::npos);
+    }
+}
+
+TEST(SerieTest, FiltradoExactoCalificacion) {
+    Serie s("ser014", "Exact Rating", 22, "Test");
+    s.AgregarEpisodio(Episodio("Exactly 3", 1, 3.0));
+    s.AgregarEpisodio(Episodio("Above 3", 1, 3.1));
+    s.AgregarEpisodio(Episodio("Below 3", 1, 2.9));
+
+    testing::internal::CaptureStdout();
+    s.MostrarEpsCalificados(3.0);
+    string output = testing::internal::GetCapturedStdout();
+
+    EXPECT_NE(output.find("Exactly 3"), string::npos);
+    EXPECT_NE(output.find("Above 3"), string::npos);
+    EXPECT_EQ(output.find("Below 3"), string::npos);
+}

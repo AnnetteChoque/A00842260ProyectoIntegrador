@@ -52,3 +52,31 @@ TEST(VirtualMethodsTest, Polimorfismo) {
     delete v1;
     delete v2;
 }
+
+TEST(CoverageTest, VideoMetodosVirtuales) {
+    Video* v = new Serie("ser016", "Virtual Test", 30, "Test");
+    delete v;
+
+    v = new Pelicula("mov014", "Virtual Test", 110, "Test");
+    delete v;
+}
+
+TEST(CoverageTest, EpisodioCopias) {
+    Episodio e1("Original", 1, 4.0);
+    Episodio e2 = e1;
+
+    EXPECT_EQ(e1.GetTitulo(), e2.GetTitulo());
+    EXPECT_EQ(e1.GetTemporada(), e2.GetTemporada());
+    EXPECT_DOUBLE_EQ(e1.GetCalificacion(), e2.GetCalificacion());
+}
+
+TEST(CoverageTest, SerieAsignacion) {
+    Serie s1("ser017", "Source", 40, "Test");
+    s1.AgregarEpisodio(Episodio("Ep", 1, 4.0));
+
+    Serie s2("ser018", "Dest", 50, "Test2");
+    s2 = s1;
+
+    EXPECT_EQ(s2.GetId(), "ser017");
+    EXPECT_EQ(s2.GetEpisodios().size(), 1);
+}
