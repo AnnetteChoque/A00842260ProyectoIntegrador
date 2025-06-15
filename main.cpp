@@ -115,7 +115,7 @@ void MostrarPorCalifGenero() {
 
         for (auto vid : videos)
             if (vid->ObtenerCalPromedio() >= calif)
-                vid->mostrarInfo();
+                vid->MostrarInfo();
     } else if (op == 2) {
         string genero;
         cin.ignore();
@@ -169,7 +169,7 @@ void MostrarPelsPorCalif() {
 /**
      Permite calificar un video existente
  */
-void calificarVideo() {
+void CalificarVideo() {
     cin.ignore();
     string titulo;
     int valor;
