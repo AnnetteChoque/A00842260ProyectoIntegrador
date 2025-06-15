@@ -30,7 +30,7 @@ protected:
     double duracion;
     ///< Género del video
     string genero;
-    ///< Calificaciones recibidas por el video (rango: 1 a 5)
+    /// @brief Calificaciones recibidas por el video (rango: 1 a 5)
     vector<int> calificacion;
 
 public:
@@ -43,7 +43,9 @@ public:
      */
     Video(string _id, string _titulo, double _duracion, string _genero)
         : id(_id), titulo(_titulo), duracion(_duracion), genero(_genero) {}
-
+    /**
+         * @brief Destructor virtual de la clase Video
+         */
     virtual ~Video() {}
 
     /**
