@@ -215,9 +215,19 @@ public:
             }
         }
     }
-
+    /**
+         * Muestra los episodios con calificación mayor o igual a una dada
+         * calif Calificación mínima a mostrar
+         */
     const vector<Episodio>& GetEpisodios() const {
         return episodios;
+    }
+    /**
+         * Muestra los episodios con calificación mayor o igual a una dada
+         * calif Calificación mínima a mostrar
+         */
+    string GetTitulo() const {
+        return Video::GetTitulo();
     }
 };
 
