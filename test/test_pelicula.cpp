@@ -107,5 +107,6 @@ TEST(CoverageFix, MostrarEpisodiosCalificados_CubreMostrarInfo) {
     s.MostrarEpsCalificados(4.0);
     std::string out = testing::internal::GetCapturedStdout();
 
-    EXPECT_NE(out.find("EpBuenardo"), std::string::npos);     
+    EXPECT_NE(out.find("EpBuenardo"), std::string::npos);
     EXPECT_EQ(out.find("EpMalardo"), std::string::npos);
+}
