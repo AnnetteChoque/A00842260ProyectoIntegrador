@@ -48,7 +48,7 @@ TEST(SerieTest, MostrarEpisodiosCalificados) {
 
     EXPECT_NE(output.find("Winter Is Coming"), string::npos);
     EXPECT_NE(output.find("The Rains of Castamere"), string::npos);
-    EXPECT_EQ(output.find("The Kingsroad"), string::npos); // No debería aparecer
+    EXPECT_EQ(output.find("The Kingsroad"), string::npos);
 }
 
 TEST(SerieTest, CalificacionPromedio) {
@@ -57,9 +57,68 @@ TEST(SerieTest, CalificacionPromedio) {
     s.AgregarEpisodio(Episodio("Chapter 2", 1, 4.8));
     s.AgregarEpisodio(Episodio("Chapter 3", 1, 5.0));
 
-    // La serie calcula el promedio de sus propias calificaciones, no de los episodios
     s.Calificar(4);
     s.Calificar(5);
 
     EXPECT_DOUBLE_EQ(s.ObtenerCalPromedio(), 4.5);
+}
+
+TEST(SerieTest, SerieSinEpisodios) {
+    Serie s("ser006", "Empty Series", 30, "Test");
+
+    testing::internal::CaptureStdout();
+    s.MostrarEpsCalificados(1.0);
+    string output = testing::internal::GetCapturedStdout();
+
+    EXPECT_TRUE(output.empty());
+}
+
+TEST(SerieTest, CalificacionEpisodiosNoAfectaSerie) {
+    Serie s("ser007", "Independent Ratings", 45, "Test");
+    Episodio e("Test Episode", 1, 5.0);
+    s.AgregarEpisodio(e);
+
+    EXPECT_DOUBLE_EQ(s.ObtenerCalPromedio(), 0.0);
+
+    s.Calificar(2.0);
+    EXPECT_DOUBLE_EQ(s.ObtenerCalPromedio(), 2.0);
+}
+
+TEST(SerieTest, TodosEpisodiosCalificados) {
+    Serie s("ser008", "All Rated", 40, "Test");
+    for(int i = 1; i <= 5; i++) {
+        s.AgregarEpisodio(Episodio("Ep " + to_string(i), 1, i));
+    }
+
+    testing::internal::CaptureStdout();
+    s.MostrarEpsCalificados(0.5);
+    string output = testing::internal::GetCapturedStdout();
+
+    for(int i = 1; i <= 5; i++) {
+        EXPECT_NE(output.find("Ep " + to_string(i)), string::npos);
+    }
+}
+
+TEST(SerieTest, NingunEpisodioCalificado) {
+    Serie s("ser009", "None Rated", 40, "Test");
+    for(int i = 1; i <= 3; i++) {
+        s.AgregarEpisodio(Episodio("Ep " + to_string(i), 1, 0.0));
+    }
+
+    testing::internal::CaptureStdout();
+    s.MostrarEpsCalificados(1.0);
+    string output = testing::internal::GetCapturedStdout();
+
+    EXPECT_TRUE(output.empty());
+}
+
+TEST(DestructorTest, DestruccionSerieConEpisodios) {
+    Serie* s = new Serie("ser010", "Temp Serie", 40, "Test");
+    s->AgregarEpisodio(Episodio("Temp Ep", 1, 3.0));
+    ASSERT_NO_THROW(delete s);
+}
+
+TEST(TemporadaTest, TemporadaInvalida) {
+    Episodio e("Invalid Season", -1, 3.0);
+    EXPECT_EQ(e.GetTemporada(), -1);
 }

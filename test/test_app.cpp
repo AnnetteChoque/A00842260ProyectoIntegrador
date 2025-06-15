@@ -35,3 +35,20 @@ TEST(AppTest, FiltrarPeliculasPorCalificacion) {
     delete p2;
 }
 
+TEST(VirtualMethodsTest, Polimorfismo) {
+    Video* v1 = new Pelicula("mov009", "Poly Movie", 120, "Test");
+    Video* v2 = new Serie("ser011", "Poly Serie", 30, "Test");
+
+    testing::internal::CaptureStdout();
+    v1->MostrarInfo();
+    string output1 = testing::internal::GetCapturedStdout();
+    EXPECT_NE(output1.find("Pelicula:"), string::npos);
+
+    testing::internal::CaptureStdout();
+    v2->MostrarInfo();
+    string output2 = testing::internal::GetCapturedStdout();
+    EXPECT_NE(output2.find("Serie:"), string::npos);
+
+    delete v1;
+    delete v2;
+}

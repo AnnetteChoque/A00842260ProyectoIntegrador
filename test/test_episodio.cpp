@@ -22,3 +22,21 @@ TEST(EpisodioTest, MostrarInformacionEpisodio) {
     EXPECT_NE(output.find("Temporada: 5"), string::npos);
     EXPECT_NE(output.find("Calificacion: 4.8"), string::npos);
 }
+
+TEST(EpisodioTest, CalificacionLimites) {
+    Episodio e("Extremo", 1, 0.0);
+    EXPECT_DOUBLE_EQ(e.GetCalificacion(), 0.0);
+
+    Episodio e2("Maximo", 1, 5.0);
+    EXPECT_DOUBLE_EQ(e2.GetCalificacion(), 5.0);
+}
+
+TEST(EmptyStringTest, CamposVacios) {
+    Pelicula p("", "", 0, "");
+    EXPECT_TRUE(p.GetId().empty());
+    EXPECT_TRUE(p.GetTitulo().empty());
+    EXPECT_TRUE(p.GetGenero().empty());
+
+    Episodio e("", 0, 0.0);
+    EXPECT_TRUE(e.GetTitulo().empty());
+}
