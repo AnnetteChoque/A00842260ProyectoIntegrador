@@ -122,7 +122,7 @@ public:
      */
     void MostrarInfo() const override {
         cout << "ID: " << id << endl;
-        cout << "Pelicula: " << titulo << "\nDuracion: " << duracion
+        cout << "Titulo: " << titulo << "\nDuracion: " << duracion
         << "\nGenero: " << genero << "\nCalificacion: "
         << ObtenerCalPromedio() << endl;
     }
@@ -215,7 +215,7 @@ public:
      */
     void MostrarInfo() const override {
         cout << "ID: " << id << endl;
-        cout << "Serie: " << titulo
+        cout << "Titulo: " << titulo
         << "\nDuracion: " << duracion
         << "\nGenero: " << genero
         << "\nCalificacion: " << ObtenerCalPromedio() << endl;
