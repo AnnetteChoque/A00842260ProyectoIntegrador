@@ -31,3 +31,61 @@ TEST(SerieTest, MostrarEpsCalificados_NoCrashea) {
 
     EXPECT_FALSE(output.empty()); // Asumimos que imprimió algo
 }
+
+// Función auxiliar para capturar salida de cout
+std::string capturarSalida(std::function<void()> funcion) {
+    std::streambuf* oldCoutBuffer = std::cout.rdbuf();
+    std::ostringstream mockCout;
+    std::cout.rdbuf(mockCout.rdbuf());
+
+    funcion();
+
+    std::cout.rdbuf(oldCoutBuffer);
+
+    return mockCout.str();
+}
+
+// Prueba: Agregar episodios correctamente
+TEST(SerieTest, AgregarEpisodios_AgregaCorrectamente) {
+    Serie s("S001", "Stranger Things", 50, "misterio");
+    Episodio ep1("Capitulo Uno", 1, 4.5);
+    Episodio ep2("Capitulo Dos", 1, 4.7);
+
+    s.AgregarEpisodio(ep1);
+    s.AgregarEpisodio(ep2);
+
+    EXPECT_EQ(s.GetEpisodios().size(), 2);
+    EXPECT_EQ(s.GetEpisodios()[0].GetTitulo(), "Capitulo Uno");
+    EXPECT_EQ(s.GetEpisodios()[1].GetTitulo(), "Capitulo Dos");
+}
+
+// Prueba: MostrarInfo muestra la información básica
+TEST(SerieTest, MostrarInfo_MuestraInformacion) {
+    Serie s("S002", "The Mandalorian", 45, "accion");
+
+    // Calificar la serie
+    s.Calificar(4.6); // Simula calificaciones
+    s.Calificar(4.8);
+
+    string salida = capturarSalida([&s]() {
+        s.MostrarInfo();
+    });
+
+    EXPECT_NE(salida.find("Serie: The Mandalorian"), string::npos);
+    EXPECT_NE(salida.find("Genero: accion"), string::npos);
+    EXPECT_NE(salida.find("Calificacion: 4.7"), string::npos); // Promedio de 4.6 y 4.8
+}
+
+// Prueba: MostrarEpsCalificados filtra correctamente
+TEST(SerieTest, MostrarEpsCalificados_FiltraPorCalificacion) {
+    Serie s("S003", "Friends", 22, "comedia");
+    s.AgregarEpisodio(Episodio("La Tormenta", 1, 4.5));
+    s.AgregarEpisodio(Episodio("La Mudanza", 2, 4.4));
+
+    string salida = capturarSalida([&s]() {
+        s.MostrarEpsCalificados(4.5);
+    });
+
+    EXPECT_NE(salida.find("La Tormenta"), string::npos);     // Debe aparecer
+    EXPECT_EQ(salida.find("La Mudanza"), string::npos);      // No debe aparecer
+}
